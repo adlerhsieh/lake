@@ -1,17 +1,19 @@
 module Lake
   class Finder
-    getter :pwd
+    getter :root
+    getter :lakefile
+    property :tasks
+    property :bin
     def initialize
-      @pwd = ENV["PWD"]
+      @root     = ENV["PWD"]
+      @lakefile = find_lakefile.to_s
     end
 
-    def lakefile
-      if File.file?("#{@pwd}/Lakefile")
-        return "#{@pwd}/Lakefile"
-      else
-        puts "Missing Lakefile"
-        abort(1)
+    def find_lakefile
+      if File.file?("#{@root}/Lakefile")
+        return "#{@root}/Lakefile"
       end
     end
+
   end
 end
