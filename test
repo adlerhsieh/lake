@@ -1,0 +1,4 @@
+crystal build ./src/lake.cr
+./lake
+rm lake
+rm -rf ./.crystal
