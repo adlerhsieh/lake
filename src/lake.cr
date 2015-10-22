@@ -2,22 +2,10 @@ require "./lake/*"
 require "colorize"
 require "option_parser"
 
-module Lake
-end
-
-finder = Lake::Finder.new
 error  = Lake::Exception.new
-
-# error.missing_lakefile unless finder.lakefile
-
+finder = Lake::Finder.new
 finder.set_dirs
-
-Dir.entries("#{finder.root}/.lake").each do |file|
-  is_file = File.file?("#{finder.root}/.lake/#{file}")
-  is_cr   = File.extname(file) == ".cr"
-  next unless is_file && is_cr
-  Lake::Builder.new("#{finder.root}/.lake/#{file}").build_tasks
-end
+finder.create_tasks
 
 OptionParser.parse! do |parser|
   parser.on("-t TASK", "--task=TASK", "Run a specified task") { |name| 

@@ -30,5 +30,14 @@ module Lake
       Dir.mkdir("#{@root}/.lake/bin")   unless Dir.exists?("#{@root}/.lake/bin")
     end
 
+    def create_tasks
+      Dir.entries("#{@root}/.lake").each do |file|
+        is_file = File.file?("#{@root}/.lake/#{file}")
+        is_cr   = File.extname(file) == ".cr"
+        next unless is_file && is_cr
+        Lake::Builder.new("#{@root}/.lake/#{file}").build_tasks
+      end
+    end
+
   end
 end
