@@ -6,15 +6,6 @@ module Lake
       @filename = @file.split("/")[-1]
     end
 
-    # def file(dir)
-    #   case dir
-    #   when :tasks
-    #     "#{@root}/tasks/#{@filename}"
-    #   when :bin
-    #     "#{@root}/bin/#{@filename[0..-4]}"
-    #   end
-    # end
-
     # Prepends Lake DSL to a task
     def prepend_dsl
       # WIP
@@ -33,7 +24,6 @@ module Lake
       tasks = {} of String? => MemoryIO | String?
       title = ""
       desc  = [] of String
-      # index = -1
       @content.each_with_index do |line, index|
         if /^Task\./ =~ line
           title = line.match(/^Task\.(\w+)/) {|md| md[1] }
@@ -48,27 +38,21 @@ module Lake
           desc = [] of String
         end
       end
-      tasks.each do |task, content|
-        task_name = "#{@root}/tasks/#{task}.cr"
-        exe_name  = "#{@root}/bin/#{task}"
-        File.write(task_name, content)
-        system("crystal build #{task_name} -o #{exe_name}")
-      end
-    end
-
-    # Parses content of a file and return 
-    def parse
-      # system("cp #{@file} #{file(:tasks)}")
-    end
-
-    # Copies task to task directory
-    def copy
-
+      cr_build(tasks)
     end
 
     # Runs crystal build and move it to bin directory
-    def build
-      system("crystal build #{file(:tasks)} -o #{file(:bin)}")
+    private def cr_build(tasks)
+      tasks.each do |task, content|
+        task_name = "#{@root}/tasks/#{task}.cr"
+        exe_name  = "#{@root}/bin/#{task}"
+        # Build task if task isn't duplicate
+        if File.read(task_name) != content
+          File.write(task_name, content)
+          puts "Building task: #{task}"
+          system("crystal build #{task_name} -o #{exe_name}")
+        end
+      end
     end
 
   end

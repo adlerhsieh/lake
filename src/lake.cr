@@ -16,8 +16,7 @@ Dir.entries("#{finder.root}/.lake").each do |file|
   is_file = File.file?("#{finder.root}/.lake/#{file}")
   is_cr   = File.extname(file) == ".cr"
   next unless is_file && is_cr
-  builder = Lake::Builder.new("#{finder.root}/.lake/#{file}")
-  builder.build_tasks
+  Lake::Builder.new("#{finder.root}/.lake/#{file}").build_tasks
 end
 
 OptionParser.parse! do |parser|
