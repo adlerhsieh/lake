@@ -14,6 +14,12 @@ module Lake
       end
     end
 
+    def find_lake_dir
+      if File.directory?("#{@root}/.lake")
+        return "#{@root}/.lake"
+      end
+    end
+
     def find_task(filename)
       "#{@root}/.lake/bin/#{filename}"
     end
@@ -25,6 +31,7 @@ module Lake
     end
 
     def set_dirs
+      system("touch Lakefile")          unless File.file?("#{@root}/Lakefile")
       Dir.mkdir("#{@root}/.lake")       unless Dir.exists?("#{@root}/.lake")
       Dir.mkdir("#{@root}/.lake/tasks") unless Dir.exists?("#{@root}/.lake/tasks")
       Dir.mkdir("#{@root}/.lake/bin")   unless Dir.exists?("#{@root}/.lake/bin")

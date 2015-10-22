@@ -14,8 +14,16 @@ OptionParser.parse! do |parser|
     abort(nil)
   }
   parser.on("-h", "--help", "Show this message") { puts parser }
+  parser.on("-c", "--create", "Generate a scaffold for lake") { 
+    finder.set_dirs 
+    puts "#{"Created".colorize(:green)}: #{finder.root}/Lakefile"
+    puts "#{"Created".colorize(:green)}: #{finder.root}/.lake"
+    puts "#{"Created".colorize(:green)}: #{finder.root}/.lake/bin"
+    puts "#{"Created".colorize(:green)}: #{finder.root}/.lake/tasks"
+    abort(nil)
+  }
   parser.banner = "Basic usage: lake -t [taskname]"
 end
 
-puts "Usage: lake -t [taskname]"
+# puts "Usage: lake -t [taskname]"
 puts "Available tasks: #{finder.tasks}"
