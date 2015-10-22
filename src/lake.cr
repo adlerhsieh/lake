@@ -6,10 +6,9 @@ module Lake
 end
 
 finder = Lake::Finder.new
+error  = Lake::Exception.new
 
-unless finder.lakefile
-  abort("Error: Missing Lakefile".colorize(:red))
-end
+error.missing_lakefile unless finder.lakefile
 
 Dir.mkdir("#{finder.root}/.lake")       unless Dir.exists?("#{finder.root}/.lake")
 Dir.mkdir("#{finder.root}/.lake/tasks") unless Dir.exists?("#{finder.root}/.lake/tasks")
@@ -32,4 +31,5 @@ Dir.entries("#{finder.root}/.lake").each do |file|
 end
 
 
+    error.missing_task(name) unless finder.tasks.includes?(name)
 
