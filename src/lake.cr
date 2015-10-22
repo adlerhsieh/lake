@@ -16,6 +16,7 @@ Dir.mkdir("#{finder.root}/.lake/bin")   unless Dir.exists?("#{finder.root}/.lake
 
 # File.read(finder.lakefile)
 
+# puts "Initializing..."
 Dir.entries("#{finder.root}/.lake").each do |file|
   is_file = File.file?("#{finder.root}/.lake/#{file}")
   is_cr   = File.extname(file) == ".cr"
@@ -40,3 +41,5 @@ OptionParser.parse! do |parser|
   parser.banner = "Basic usage: lake -t [taskname]"
 end
 
+puts "Usage: lake -t [taskname]"
+puts "Available tasks: #{finder.tasks}"
