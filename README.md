@@ -6,7 +6,7 @@ Work in progress. Stay tuned.
 
 ##### 0.1.0
 - [x] Allow processing & executing tasks in .lake directory
-- [ ] Allow processing & executing Lakefile
+- [x] Allow processing & executing Lakefile
 - [x] Allow Lakefile and .lake directory generation
 - [ ] Brew installation
 - [ ] Usage & Instructions
