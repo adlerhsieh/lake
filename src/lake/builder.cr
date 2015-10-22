@@ -51,7 +51,7 @@ module Lake
         next if File.exists?(task_name) && File.read(task_name) == content
         File.write(task_name, content)
         system("crystal build #{task_name} -o #{exe_name}")
-        puts "#{"Built".colorize(:green)}: #{task}"
+        puts "#{"Task built".colorize(:green)}: #{task}"
       end
     end
 
