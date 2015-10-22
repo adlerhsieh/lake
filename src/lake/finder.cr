@@ -31,10 +31,22 @@ module Lake
     end
 
     def set_dirs
-      system("touch Lakefile")          unless File.file?("#{@root}/Lakefile")
-      Dir.mkdir("#{@root}/.lake")       unless Dir.exists?("#{@root}/.lake")
-      Dir.mkdir("#{@root}/.lake/tasks") unless Dir.exists?("#{@root}/.lake/tasks")
-      Dir.mkdir("#{@root}/.lake/bin")   unless Dir.exists?("#{@root}/.lake/bin")
+      unless File.file?("#{@root}/Lakefile")
+        system("touch Lakefile")          
+        puts "#{"Created".colorize(:green)}: #{@root}/Lakefile"
+      end
+      unless Dir.exists?("#{@root}/.lake") 
+        Dir.mkdir("#{@root}/.lake")       
+        puts "#{"Created".colorize(:green)}: #{@root}/.lake"
+      end
+      unless Dir.exists?("#{@root}/.lake/tasks")
+        Dir.mkdir("#{@root}/.lake/tasks") 
+        puts "#{"Created".colorize(:green)}: #{@root}/.lake/bin"
+      end
+      unless Dir.exists?("#{@root}/.lake/bin")
+        Dir.mkdir("#{@root}/.lake/bin")   
+        puts "#{"Created".colorize(:green)}: #{@root}/.lake/tasks"
+      end
     end
 
     def create_tasks
@@ -44,6 +56,7 @@ module Lake
         next unless is_file && is_cr
         Lake::Builder.new("#{@root}/.lake/#{file}").build_tasks
       end
+      # Lake::Builder.new(find_lakefile.to_s).build_tasks
     end
 
   end

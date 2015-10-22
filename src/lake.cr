@@ -4,22 +4,21 @@ require "option_parser"
 
 error  = Lake::Exception.new
 finder = Lake::Finder.new
-finder.set_dirs
-finder.create_tasks
 
 OptionParser.parse! do |parser|
-  parser.on("-t TASK", "--task=TASK", "Run a specified task") { |name| 
+  parser.on("-t TASK", "--task=TASK", "Executes a specified task") { |name| 
+    finder.set_dirs
+    finder.create_tasks
     error.missing_task(name) unless finder.tasks.includes?(name)
-    system finder.find_task(name) 
+    system(finder.find_task(name)) 
     abort(nil)
   }
-  parser.on("-h", "--help", "Show this message") { puts parser }
-  parser.on("-c", "--create", "Generate a scaffold for lake") { 
+  parser.on("-h", "--help", "Shows this message") {
+    puts parser 
+    abort(nil)
+  }
+  parser.on("-c", "--create", "Generates a scaffold") { 
     finder.set_dirs 
-    puts "#{"Created".colorize(:green)}: #{finder.root}/Lakefile"
-    puts "#{"Created".colorize(:green)}: #{finder.root}/.lake"
-    puts "#{"Created".colorize(:green)}: #{finder.root}/.lake/bin"
-    puts "#{"Created".colorize(:green)}: #{finder.root}/.lake/tasks"
     abort(nil)
   }
   parser.banner = "Basic usage: lake -t [taskname]"
