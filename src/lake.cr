@@ -8,15 +8,10 @@ end
 finder = Lake::Finder.new
 error  = Lake::Exception.new
 
-error.missing_lakefile unless finder.lakefile
+# error.missing_lakefile unless finder.lakefile
 
-Dir.mkdir("#{finder.root}/.lake")       unless Dir.exists?("#{finder.root}/.lake")
-Dir.mkdir("#{finder.root}/.lake/tasks") unless Dir.exists?("#{finder.root}/.lake/tasks")
-Dir.mkdir("#{finder.root}/.lake/bin")   unless Dir.exists?("#{finder.root}/.lake/bin")
+finder.set_dirs
 
-# File.read(finder.lakefile)
-
-# puts "Initializing..."
 Dir.entries("#{finder.root}/.lake").each do |file|
   is_file = File.file?("#{finder.root}/.lake/#{file}")
   is_cr   = File.extname(file) == ".cr"

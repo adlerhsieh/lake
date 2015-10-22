@@ -24,5 +24,11 @@ module Lake
       }.compact.join(", ")
     end
 
+    def set_dirs
+      Dir.mkdir("#{@root}/.lake")       unless Dir.exists?("#{@root}/.lake")
+      Dir.mkdir("#{@root}/.lake/tasks") unless Dir.exists?("#{@root}/.lake/tasks")
+      Dir.mkdir("#{@root}/.lake/bin")   unless Dir.exists?("#{@root}/.lake/bin")
+    end
+
   end
 end
