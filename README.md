@@ -9,18 +9,30 @@ Work in progress. Stay tuned.
 - [ ] Allow processing & executing Lakefile
 - [x] Allow Lakefile and .lake directory generation
 - [ ] Brew installation
+- [ ] Usage & Instructions
 
 ##### 0.2.0
 - [ ] Allow shards support in .lake
 - [ ] Allow dependency requirement
 - [ ] apt-get installation
+- [ ] Manual installation
+- [ ] Usage & Instructions
 
 ##### 0.3.0
 - [ ] Argument support
 - [ ] Allow executing multiple tasks in one command
+- [ ] Allow looking for other Lakefiles if not in current directory
+- [ ] Allow global Lakefile and `-g` option
+
+##### 1.0.0
+- [ ] Performance tuning
+- [ ] Refactoring
+- [ ] Test coverage 90% up
+- [ ] Setting up ci service
+- [ ] Official website (gh-pages or .org)
 
 ##### In the future
-- [ ] Remove reduntant "-t" when executing command
+- [ ] Remove reduntant `-t` when executing command
 
 ## Contributing
 
