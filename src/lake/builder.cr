@@ -2,8 +2,9 @@ module Lake
   class Builder
     def initialize(@file)
       @content  = File.read_lines(@file.to_s)
-      @root     = @file.split("/")[0..-2].join("/")
       @filename = @file.split("/")[-1]
+      @root     = @file.split("/")[0..-2].join("/")
+      @root     += "/.lake" if @filename == "Lakefile"
     end
 
     # Prepends Lake DSL to a task
@@ -38,20 +39,19 @@ module Lake
           desc = [] of String
         end
       end
-      cr_build(tasks)
+      crystal_build(tasks)
     end
 
-    # Runs crystal build and move it to bin directory
-    private def cr_build(tasks)
+    # Runs crystal build and output to the bin directory
+    private def crystal_build(tasks)
       tasks.each do |task, content|
         task_name = "#{@root}/tasks/#{task}.cr"
         exe_name  = "#{@root}/bin/#{task}"
-        # Build task if task isn't duplicate
-        if File.read(task_name) != content
-          File.write(task_name, content)
-          puts "Building task: #{task}"
-          system("crystal build #{task_name} -o #{exe_name}")
-        end
+        # Build task if the task isn't duplicate
+        next if File.exists?(task_name) && File.read(task_name) == content
+        File.write(task_name, content)
+        system("crystal build #{task_name} -o #{exe_name}")
+        puts "#{"Built".colorize(:green)}: #{task}"
       end
     end
 

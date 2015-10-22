@@ -56,7 +56,7 @@ module Lake
         next unless is_file && is_cr
         Lake::Builder.new("#{@root}/.lake/#{file}").build_tasks
       end
-      # Lake::Builder.new(find_lakefile.to_s).build_tasks
+      Lake::Builder.new(find_lakefile.to_s).build_tasks
     end
 
   end
