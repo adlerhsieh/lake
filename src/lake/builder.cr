@@ -21,8 +21,12 @@ module Lake
     end
 
     # Matches task content with source
-    def match
-      @task == File.read(file(:tasks).to_s)
+    def up_to_date?
+      if File.file?(file(:tasks).to_s)
+        @task == File.read(file(:tasks).to_s)
+      else
+        false
+      end
     end
 
     def copy

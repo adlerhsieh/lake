@@ -1,8 +1,8 @@
 require "./lake/*"
 require "colorize"
+require "option_parser"
 
 module Lake
-  
 end
 
 finder = Lake::Finder.new
@@ -19,17 +19,24 @@ Dir.mkdir("#{finder.root}/.lake/bin")   unless Dir.exists?("#{finder.root}/.lake
 Dir.entries("#{finder.root}/.lake").each do |file|
   is_file = File.file?("#{finder.root}/.lake/#{file}")
   is_cr   = File.extname(file) == ".cr"
-  if is_file && is_cr
-    builder = Lake::Builder.new("#{finder.root}/.lake/#{file}")
-    unless builder.match
-      builder.copy
-      builder.prepend_dsl
-      builder.build
-    end
-    # system(builder.file(:bin).to_s)
+  next unless is_file && is_cr
+  builder = Lake::Builder.new("#{finder.root}/.lake/#{file}")
+  unless builder.up_to_date?
+    builder.copy
+    builder.prepend_dsl
+    builder.build
   end
 end
 
-
+OptionParser.parse! do |parser|
+  # parser.on("name","Specifies a task name") { |name| 
+  #   system finder.find_task(name) 
+  # }
+  parser.on("-t TASK","--task=TASK","Run a specified task") { |name| 
     error.missing_task(name) unless finder.tasks.includes?(name)
+    system finder.find_task(name) 
+  }
+  parser.on("-h","--help","Show this message") { puts parser }
+  parser.banner = "Basic usage: lake -t [taskname]"
+end
 

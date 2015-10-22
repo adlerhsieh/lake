@@ -2,7 +2,6 @@ module Lake
   class Finder
     getter :root
     getter :lakefile
-    property :tasks
     property :bin
     def initialize
       @root     = ENV["PWD"]
@@ -13,6 +12,14 @@ module Lake
       if File.file?("#{@root}/Lakefile")
         return "#{@root}/Lakefile"
       end
+    end
+
+    def find_task(filename)
+      "#{@root}/.lake/bin/#{filename}"
+    end
+
+    def tasks
+      Dir.entries("#{@root}/.lake/bin")
     end
 
   end
