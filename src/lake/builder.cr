@@ -6,14 +6,14 @@ module Lake
       @filename = @file.split("/")[-1]
     end
 
-    def file(dir)
-      case dir
-      when :tasks
-        "#{@root}/tasks/#{@filename}"
-      when :bin
-        "#{@root}/bin/#{@filename[0..-4]}"
-      end
-    end
+    # def file(dir)
+    #   case dir
+    #   when :tasks
+    #     "#{@root}/tasks/#{@filename}"
+    #   when :bin
+    #     "#{@root}/bin/#{@filename[0..-4]}"
+    #   end
+    # end
 
     # Prepends Lake DSL to a task
     def prepend_dsl
@@ -29,7 +29,7 @@ module Lake
       end
     end
 
-    def separates_all_tasks
+    def build_tasks
       tasks = {} of String? => MemoryIO | String?
       title = ""
       desc  = [] of String
@@ -42,11 +42,17 @@ module Lake
         end
         if index + 1 == @content.size || /^Task\./ =~ @content[index + 1]
           unless title == ""
-            tasks[title] = desc.join("\n")
+            tasks[title] = desc.join("")
           end
           title = ""
           desc = [] of String
         end
+      end
+      tasks.each do |task, content|
+        task_name = "#{@root}/tasks/#{task}.cr"
+        exe_name  = "#{@root}/bin/#{task}"
+        File.write(task_name, content)
+        system("crystal build #{task_name} -o #{exe_name}")
       end
     end
 

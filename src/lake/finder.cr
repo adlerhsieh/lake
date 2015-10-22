@@ -19,7 +19,9 @@ module Lake
     end
 
     def tasks
-      Dir.entries("#{@root}/.lake/bin")
+      Dir.entries("#{@root}/.lake/bin").map {|file|
+        file if File.file?("#{@root}/.lake/bin/#{file}")
+      }.compact.join(", ")
     end
 
   end
