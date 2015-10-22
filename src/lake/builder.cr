@@ -1,7 +1,7 @@
 module Lake
   class Builder
     def initialize(@file)
-      @task     = File.read(@file.to_s)
+      @content  = File.read_lines(@file.to_s)
       @root     = @file.split("/")[0..-2].join("/")
       @filename = @file.split("/")[-1]
     end
@@ -29,11 +29,38 @@ module Lake
       end
     end
 
-    def copy
-      system("cp #{@file} #{file(:tasks)}")
+    def separates_all_tasks
+      tasks = {} of String? => MemoryIO | String?
+      title = ""
+      desc  = [] of String
+      # index = -1
+      @content.each_with_index do |line, index|
+        if /^Task\./ =~ line
+          title = line.match(/^Task\.(\w+)/) {|md| md[1] }
+        else
+          desc << line
+        end
+        if index + 1 == @content.size || /^Task\./ =~ @content[index + 1]
+          unless title == ""
+            tasks[title] = desc.join("\n")
+          end
+          title = ""
+          desc = [] of String
+        end
+      end
     end
 
-    # run crystal build and move it to bin directory
+    # Parses content of a file and return 
+    def parse
+      # system("cp #{@file} #{file(:tasks)}")
+    end
+
+    # Copies task to task directory
+    def copy
+
+    end
+
+    # Runs crystal build and move it to bin directory
     def build
       system("crystal build #{file(:tasks)} -o #{file(:bin)}")
     end
