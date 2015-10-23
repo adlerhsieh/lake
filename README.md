@@ -1,6 +1,6 @@
 # Lake
 
-Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. It automatically builds & runs any specified tasks. No need of `crystal build` or `crystal run` for any script file. Use it with `cron` and other automation tools for more efficient workflows.
+Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. It automatically builds & runs any specified task. No need of `crystal build` or `crystal run` anymore. Use it with `cron` and other automation tools for more efficient workflows.
 
 ## Features
 
