@@ -25,6 +25,11 @@ OptionParser.parse! do |parser|
   #   finder.set_dirs 
   #   abort(nil)
   # }
+  parser.on("-p", "--purge", "Remove .lake directory and Lakefile"){
+    system("rm -rf .lake")
+    system("rm Lakefile")
+    abort("Purged.")
+  }
   parser.banner = "Basic usage: lake -t [taskname]"
 end
 
