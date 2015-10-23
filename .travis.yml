@@ -1,11 +1,11 @@
 language: generic
 sudo: required
 before_install: |
-  - curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
-  - sudo apt-get -q update
+  curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
+  sudo apt-get -q update
 install: |
-  - sudo apt-get install crystal
-  - crystal deps
+  sudo apt-get install crystal
+  crystal deps
 script:
   - crystal spec
-  - pwd
+  - ./test
