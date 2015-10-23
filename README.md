@@ -1,4 +1,4 @@
-# Lake
+# Lake [![Build Status](https://travis-ci.org/adlerhsieh/lake.svg?branch=master)](https://travis-ci.org/adlerhsieh/lake)
 
 Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. It automatically builds & runs any specified task. No need of `crystal build` or `crystal run` anymore. Use it with `cron` and other automation tools for more efficient workflows.
 
@@ -105,7 +105,7 @@ If you have many tasks in a project, separate them in different files. In additi
 - [ ] Performance tuning
 - [ ] Refactoring
 - [ ] Test coverage 90% up
-- [ ] Setting up ci service
+- [x] Setting up ci service
 - [ ] Official website (gh-pages or .org)
 
 ##### In the future
