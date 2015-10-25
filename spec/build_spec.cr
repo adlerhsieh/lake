@@ -1,17 +1,5 @@
 require "./spec_helper"
 
-describe "Purge" do
-  it "all files" do
-    system("./lake -p")
-    File.directory?("#{ENV["PWD"]}/.lake").should be_false
-    File.file?("#{ENV["PWD"]}/Lakefile").should   be_false
-  end
-  it "the executable" do
-    system("rm lake")
-    File.file?("#{ENV["PWD"]}/lake").should be_false
-  end
-end
-
 describe "Lake" do
   it "builds lake executable" do
     system("crystal build ./src/lake.cr")
@@ -25,16 +13,8 @@ describe "Lake" do
   end
 
   it "# creates tasks" do
-    File.write("#{ENV["PWD"]}/.lake/hello.cr",
-               "Task.hello\n"\
-               "puts \"hello world\"\n"\
-               "Task.create\n"\
-               "system(\"touch create.txt\")"
-              )
-    File.write("#{ENV["PWD"]}/.lake/go.cr",
-               "Task.go\n"\
-               "puts \"We need to go now.\"\n"
-              )
+    File.write("#{ENV["PWD"]}/.lake/#{file_name[0]}.cr", task_content[0])
+    File.write("#{ENV["PWD"]}/.lake/#{file_name[1]}.cr", task_content[1])
     File.file?("#{ENV["PWD"]}/.lake/hello.cr").should be_true
     File.file?("#{ENV["PWD"]}/.lake/go.cr").should    be_true
   end
@@ -58,12 +38,5 @@ describe "options" do
   it "exit with 1 with an option" do
     system("./lake -h")
     system("echo $?").should be_true
-  end
-end
-
-describe "Run tasks" do
-  it "-t create" do
-    system("./lake -t create")
-    File.file?("#{ENV["PWD"]}/create.txt").should be_true
   end
 end
