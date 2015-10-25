@@ -7,7 +7,7 @@ describe "Lake" do
   end
 
   it "without option and tasks" do
-    system("./lake")
+    system("./lake").should be_true
     File.file?("#{ENV["PWD"]}/Lakefile").should   be_true
     File.directory?("#{ENV["PWD"]}/.lake").should be_true
   end
@@ -15,8 +15,8 @@ describe "Lake" do
   it "# creates tasks with helper" do
     File.write("#{ENV["PWD"]}/.lake/#{file_name[0]}.cr", task_content[0])
     File.write("#{ENV["PWD"]}/.lake/#{file_name[1]}.cr", task_content[1])
-    File.file?("#{ENV["PWD"]}/.lake/hello.cr").should be_true
-    File.file?("#{ENV["PWD"]}/.lake/go.cr").should    be_true
+    File.file?("#{ENV["PWD"]}/.lake/#{file_name[0]}.cr").should be_true
+    File.file?("#{ENV["PWD"]}/.lake/#{file_name[1]}.cr").should be_true
   end
 
   describe "-b" do

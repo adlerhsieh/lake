@@ -105,30 +105,29 @@ If you have many tasks in a project, separate them in different files. In additi
 
 ##### 0.2.0
 - [x] Remove failed build task in `tasks` directory
+- [x] Allow executing multiple tasks in one command
+- [x] Remove reduntant `-t` when executing command
+- [x] Setting up ci service
+- [x] Automatically install Crystal before installing Lake
 - [ ] Allow `shards` support in `.lake`
 - [ ] Allow dependency requirement
-- [ ] apt-get installation
 - [x] Manual installation
-- [ ] Usage & Instructions
 
 ##### 0.3.0
-- [ ] Argument support
-- [x] Allow executing multiple tasks in one command
+- [ ] Argument support for tasks
 - [ ] DSL support that allows putting multiple tasks in a single task
 - [ ] Allow looking for other `Lakefile`s if not in current directory
 - [ ] Allow global Lakefile and `-g` option
+- [ ] apt-get installation
 
 ##### 1.0.0
-- [ ] Refactoring
 - [ ] Unit Test
 - [ ] Acceptance Test
-- [x] Setting up ci service
 - [ ] Official website or something better than README as introduction (gh-pages or .org)
 
 ##### In the future
-- [x] Remove reduntant `-t` when executing command
 - [ ] Auto-detect non-character in task name and send warning
-- [x] Automatically install Crystal before installing Lake
+- [ ] Allow checking if `pwd` is in a git repo, crystal project, and has a Lakefile.
 
 ## Contributing
 
