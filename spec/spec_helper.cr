@@ -1,2 +1,2 @@
 require "spec"
-require "../src/lake"
+# require "../src/lake"
