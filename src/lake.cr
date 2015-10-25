@@ -27,6 +27,10 @@ OptionParser.parse! do |parser|
     puts "Purged."
     exit 0
   }
+  parser.on("-v", "--version", "Display current version"){
+    puts Lake::VERSION
+    exit 0
+  }
   # parser.banner = "Basic usage: lake [taskname]"
 end
 

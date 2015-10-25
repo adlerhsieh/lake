@@ -40,6 +40,8 @@ If you decide to install it manually:
 2. Download lake [executable](https://github.com/adlerhsieh/lake/raw/master/lake).
 3. Move the executable to one of your `PATH` directory, `/usr/local/bin` for example.
 
+Once done, run `lake -v` or `lake -h` and it should display something other than `Command not found`. Crystal is not required at this stage, but once you start running a task, you will see `Command not found: crystal` if Crystal is not successfully installed.
+
 ## Usage
 
 Create a `Lakefile` in any project directory, and write:
@@ -90,6 +92,7 @@ If you have many tasks in a project, separate them in different files. In additi
 |`-b`        |`--build`    | Builds all tasks |
 |`-p`        |`--purge`    | Removes `lake` executable, `.lake` directory and `Lakefile` |
 |`-h`        |`--help`     | Displays help messages |
+|`-v`        |`--version`  | Displays current version |
 
 ## Progress
 
@@ -105,26 +108,27 @@ If you have many tasks in a project, separate them in different files. In additi
 - [ ] Allow `shards` support in `.lake`
 - [ ] Allow dependency requirement
 - [ ] apt-get installation
-- [ ] Manual installation
+- [x] Manual installation
 - [ ] Usage & Instructions
 
 ##### 0.3.0
 - [ ] Argument support
-- [ ] Allow executing multiple tasks in one command
+- [x] Allow executing multiple tasks in one command
+- [ ] DSL support that allows putting multiple tasks in a single task
 - [ ] Allow looking for other `Lakefile`s if not in current directory
 - [ ] Allow global Lakefile and `-g` option
 
 ##### 1.0.0
-- [ ] Performance tuning
 - [ ] Refactoring
-- [ ] Test coverage 90% up
+- [ ] Unit Test
+- [ ] Acceptance Test
 - [x] Setting up ci service
-- [ ] Official website (gh-pages or .org)
+- [ ] Official website or something better than README as introduction (gh-pages or .org)
 
 ##### In the future
 - [x] Remove reduntant `-t` when executing command
 - [ ] Auto-detect non-character in task name and send warning
-- [ ] Automatically install Crystal before installing Lake
+- [x] Automatically install Crystal before installing Lake
 
 ## Contributing
 

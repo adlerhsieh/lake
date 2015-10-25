@@ -39,13 +39,11 @@ describe "Lake" do
   end
 end
 
-# describe "options" do
-#   it "exit with 1 without an option" do
-#     system("./lake")
-#     system("echo $?").should be_true
-#   end
-#   it "exit with 1 with an option" do
-#     system("./lake -h")
-#     system("echo $?").should be_true
-#   end
-# end
+describe "options" do
+  it "--help" do
+    system("./lake -h").should be_true
+  end
+  it "--version" do
+    system("./lake -v").should be_true
+  end
+end
