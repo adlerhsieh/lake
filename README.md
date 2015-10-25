@@ -90,7 +90,7 @@ If you have many tasks in a project, separate them in different files. In additi
 | Short Flag | Long Flag   | Description
 |----------- |-------------|----------- |
 |`-b`        |`--build`    | Builds all tasks |
-|`-p`        |`--purge`    | Removes `lake` executable, `.lake` directory and `Lakefile` |
+|`-r`        |`--rebuild`  | Rebuilds all tasks |
 |`-h`        |`--help`     | Displays help messages |
 |`-v`        |`--version`  | Displays current version |
 
