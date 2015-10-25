@@ -33,8 +33,5 @@ OptionParser.parse! do |parser|
   parser.banner = "Basic usage: lake -t [taskname]"
 end
 
-if finder.tasks.size == 0
-  puts "No task found. Usage:\n1. Create tasks in Lakefile.\n2. Run: lake -t [taskname]"
-else
-  puts "Available tasks: #{finder.tasks}"
-end
+error.no_task if finder.tasks.size == 0
+puts "Available tasks: #{finder.tasks}"
