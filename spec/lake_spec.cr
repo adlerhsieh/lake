@@ -28,8 +28,8 @@ describe "Lake" do
     File.write("#{ENV["PWD"]}/.lake/hello.cr",
                "Task.hello\n"\
                "puts \"hello world\"\n"\
-               "Task.salute\n"\
-               "puts \"salute\""
+               "Task.create\n"\
+               "system(\"touch create.txt\")"
               )
     File.write("#{ENV["PWD"]}/.lake/go.cr",
                "Task.go\n"\
@@ -42,10 +42,10 @@ describe "Lake" do
   it "-b" do
     system("./lake -b")
     File.file?("#{ENV["PWD"]}/.lake/tasks/hello.cr").should  be_true
-    File.file?("#{ENV["PWD"]}/.lake/tasks/salute.cr").should be_true
+    File.file?("#{ENV["PWD"]}/.lake/tasks/create.cr").should be_true
     File.file?("#{ENV["PWD"]}/.lake/tasks/go.cr").should     be_true
     File.file?("#{ENV["PWD"]}/.lake/bin/hello").should       be_true
-    File.file?("#{ENV["PWD"]}/.lake/bin/salute").should      be_true
+    File.file?("#{ENV["PWD"]}/.lake/bin/create").should      be_true
     File.file?("#{ENV["PWD"]}/.lake/bin/go").should          be_true
   end
 end
@@ -58,5 +58,12 @@ describe "options" do
   it "exit with 1 with an option" do
     system("./lake -h")
     system("echo $?").should be_true
+  end
+end
+
+describe "Run tasks" do
+  it "-t create" do
+    system("./lake -t create")
+    File.file?("#{ENV["PWD"]}/create.txt").should be_true
   end
 end
