@@ -1,12 +1,14 @@
 # Lake [![Build Status](https://travis-ci.org/adlerhsieh/lake.svg?branch=master)](https://travis-ci.org/adlerhsieh/lake)
 
-Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. It automatically builds & runs any specified task. No need of `crystal build` or `crystal run` anymore. Use it with `cron` and other automation tools for more efficient workflows.
+`rake` is fast, but `lake` is faster.
+
+Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. Tasks are automatically built & run through the command line interface. It take advantages of the performance of `Crystal` and the utility of `rake `, helping you run recursive tasks in amazing speed.
 
 ## Features
 
 - Automatically building & running tasks.
 - Managing taks in `Lakefile` or `.lake` directory.
-- One file can include multiple tasks.
+- Use it with `cron` and other automation tools for more efficient workflows.
 
 ## Requirement
 
