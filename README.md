@@ -1,6 +1,6 @@
 # Lake [![Build Status](https://travis-ci.org/adlerhsieh/lake.svg?branch=master)](https://travis-ci.org/adlerhsieh/lake)
 
-`rake` is fast, but `lake` is faster.
+##### `rake` is fast, but `lake` is faster.
 
 Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. Tasks are automatically built & run through the command line interface. It take advantages of the performance of `Crystal` and the utility of `rake `, helping you run recursive tasks in amazing speed.
 
