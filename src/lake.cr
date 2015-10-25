@@ -7,17 +7,21 @@ finder = Lake::Finder.new
 finder.set_dirs
 
 OptionParser.parse! do |parser|
-  parser.on("-t TASK", "--task=TASK", "Executes a specified task") { |name| 
+  parser.on("-t TASK", "--task=TASK", "Executes a specified task.") { |name|
     finder.create_tasks
     error.missing_task(name) unless finder.tasks.includes?(name)
     system(finder.find_task(name)) 
     abort(nil)
   }
-  parser.on("-b", "--build", "Build all tasks without running") {
+  parser.on("-b", "--build", "Build all tasks, ignoring existing tasks.") {
     finder.create_tasks
     abort(nil)
   }
-  parser.on("-h", "--help", "Shows this message") {
+  parser.on("-r", "--rebuild", "Rebuild all tasks.") {
+    finder.recreate_tasks
+    abort(nil)
+  }
+  parser.on("-h", "--help", "Shows this message.") {
     puts parser 
     abort(nil)
   }

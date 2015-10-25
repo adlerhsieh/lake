@@ -59,5 +59,18 @@ module Lake
       Lake::Builder.new(find_lakefile.to_s).build_tasks
     end
 
+    def remove(type)
+      Dir.entries("#{@root}/.lake/#{type}").each do |file|
+        filepath = "#{@root}/.lake/#{type}/#{file}"
+        File.delete(filepath) if File.file?(filepath)
+      end
+    end
+
+    def recreate_tasks
+      remove("tasks")
+      remove("bin")
+      create_tasks
+    end
+
   end
 end
