@@ -8,6 +8,10 @@ Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for m
 - Managing taks in `Lakefile` or `.lake` directory.
 - One file can include multiple tasks.
 
+## Requirement
+
+[Crystal](https://github.com/manastech/crystal) >= 0.9.0. If you're on Mac OS X installing with Homebrew. Lake will install Crystal for you.
+
 ## Installtion
 
 | System         |  Available Methods  |
@@ -31,8 +35,8 @@ brew install lake
 Create a `Lakefile` in any project directory, and write:
 
 ```crystal
-Task.hello
-  puts "hello world"
+Task.hello           # This is title
+  puts "hello world" # This is code
 ```
 
 In Lake DSL, all tasks should start with a `Task.` followed by a task name, which is `hello` in this case. Indentation at the second line is not required.
@@ -88,6 +92,7 @@ If you have many tasks in a project, separate them in different files. In additi
 - [x] Usage & Instructions
 
 ##### 0.2.0
+- [ ] Remove failed build task in `tasks` directory
 - [ ] Allow checking typo for task definition. e.g. `Task.hello`
 - [ ] Allow `shards` support in `.lake`
 - [ ] Allow dependency requirement
