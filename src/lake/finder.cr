@@ -20,10 +20,6 @@ module Lake
       end
     end
 
-    def find_task(filename)
-      "#{@root}/.lake/bin/#{filename}"
-    end
-
     def tasks
       Dir.entries("#{@root}/.lake/bin").map {|file|
         file if File.file?("#{@root}/.lake/bin/#{file}")

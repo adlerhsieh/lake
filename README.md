@@ -95,7 +95,6 @@ If you have many tasks in a project, separate them in different files. In additi
 
 ##### 0.2.0
 - [x] Remove failed build task in `tasks` directory
-- [ ] Allow checking typo for task definition. e.g. `Task.hello`
 - [ ] Allow `shards` support in `.lake`
 - [ ] Allow dependency requirement
 - [ ] apt-get installation
@@ -116,7 +115,8 @@ If you have many tasks in a project, separate them in different files. In additi
 - [ ] Official website (gh-pages or .org)
 
 ##### In the future
-- [ ] Remove reduntant `-t` when executing command
+- [x] Remove reduntant `-t` when executing command
+- [ ] Auto-detect non-character in task name and send warning
 - [ ] Automatically install Crystal before installing Lake
 
 ## Contributing

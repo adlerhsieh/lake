@@ -7,12 +7,6 @@ finder = Lake::Finder.new
 finder.set_dirs
 
 OptionParser.parse! do |parser|
-  parser.on("-t TASK", "--task=TASK", "Executes a specified task.") { |name|
-    finder.create_tasks
-    error.missing_task(name) unless finder.tasks.includes?(name)
-    system(finder.find_task(name)) 
-    exit 0
-  }
   parser.on("-b", "--build", "Build all tasks, ignoring existing tasks.") {
     finder.create_tasks
     exit 0
@@ -25,10 +19,6 @@ OptionParser.parse! do |parser|
     puts parser 
     exit 0
   }
-  # parser.on("-c", "--create", "Generates a scaffold") { 
-  #   finder.set_dirs 
-  #   abort(nil)
-  # }
   parser.on("-p", "--purge", "Remove .lake directory and Lakefile"){
     system("rm -rf .lake")
     system("rm Lakefile")
@@ -36,6 +26,16 @@ OptionParser.parse! do |parser|
     exit 0
   }
   parser.banner = "Basic usage: lake -t [taskname]"
+end
+
+if ARGV
+  runner = Lake::Runner.new(ARGV)
+  finder.create_tasks if runner.has_task?
+  runner.tasks.each do |name|
+    error.missing_task(name) unless finder.tasks.includes?(name)
+    runner.run(name)
+  end
+  exit 0 if runner.has_task?
 end
 
 error.no_task if finder.tasks.size == 0
