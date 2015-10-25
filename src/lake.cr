@@ -32,7 +32,8 @@ OptionParser.parse! do |parser|
   parser.on("-p", "--purge", "Remove .lake directory and Lakefile"){
     system("rm -rf .lake")
     system("rm Lakefile")
-    exit("Purged.")
+    puts "Purged."
+    exit 0
   }
   parser.banner = "Basic usage: lake -t [taskname]"
 end
