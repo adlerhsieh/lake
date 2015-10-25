@@ -94,7 +94,7 @@ If you have many tasks in a project, separate them in different files. In additi
 - [x] Usage & Instructions
 
 ##### 0.2.0
-- [ ] Remove failed build task in `tasks` directory
+- [x] Remove failed build task in `tasks` directory
 - [ ] Allow checking typo for task definition. e.g. `Task.hello`
 - [ ] Allow `shards` support in `.lake`
 - [ ] Allow dependency requirement
