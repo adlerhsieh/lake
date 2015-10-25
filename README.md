@@ -1,8 +1,8 @@
 # Lake [![Build Status](https://travis-ci.org/adlerhsieh/lake.svg?branch=master)](https://travis-ci.org/adlerhsieh/lake)
 
-##### `rake` is fast, but `lake` is faster.
+##### Rake is productive, but we want it faster.
 
-Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. Tasks are automatically built & run through the command line interface. It take advantages of the performance of `Crystal` and the utility of `rake `, helping you run recursive tasks in amazing speed.
+Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. Tasks are automatically built & run through the command line interface. It take advantages of the performance of `Crystal` and the utility of `rake`, helping you run recursive tasks in amazing speed.
 
 ## Features
 
@@ -12,7 +12,7 @@ Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for m
 
 ## Requirement
 
-[Crystal](https://github.com/manastech/crystal) >= 0.9.0. If you're on Mac OS X installing with Homebrew. Lake will install Crystal for you.
+[Crystal](https://github.com/manastech/crystal) >= 0.9.0. If you're on Mac OS X installing with Homebrew, Lake will install Crystal for you.
 
 ## Installtion
 
@@ -41,19 +41,19 @@ Task.hello           # This is title
   puts "hello world" # This is code
 ```
 
-In Lake DSL, all tasks should start with a `Task.` followed by a task name, which is `hello` in this case. Indentation at the second line is not required.
+In Lake DSL, all tasks should start with a `Task.` followed by a task name, which is `hello` in this case. Indentation is not required.
 
 Save the file, and run:
 
 ```
-lake -t hello
+lake hello
 ```
 
 It compiles and build a task file for `hello` task. You should see `hello world` on screen and that's it. Write any script you want and run it this way.
 
 ## Advanced Techniques
 
-#### Writing mulitple tasks
+#### Writing mulitple tasks in a single file
 
 You can set multiple tasks in a single file.
 
@@ -79,9 +79,8 @@ If you have many tasks in a project, separate them in different files. In additi
 
 | Short Flag | Long Flag   | Description
 |----------- |-------------|----------- |
-|`-t TASK`   |`--task TASK`| Runs a specified `TASK` (including build) |
 |`-b`        |`--build`    | Builds all tasks |
-|`-p`        |`--purge`    | Removes `.lake` directory and `Lakefile` |
+|`-p`        |`--purge`    | Removes `lake` executable, `.lake` directory and `Lakefile` |
 |`-h`        |`--help`     | Displays help messages |
 
 ## Progress
