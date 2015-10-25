@@ -13,7 +13,9 @@ def task_content
     "Task.hello\n"\
     "puts \"hello world\"\n"\
     "Task.create\n"\
-    "system(\"touch create.txt\")",
+    "system(\"touch create.txt\")\n"\
+    "Task.hi-\n"\
+    "puts \"hi\"",
 
     "Task.go\n"\
     "puts \"We need to go now.\"\n"

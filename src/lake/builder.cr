@@ -31,6 +31,7 @@ module Lake
         else
           desc << line
         end
+        # Ends a task collection at the last line of the task or file
         if index + 1 == @content.size || /^Task\./ =~ @content[index + 1]
           unless title == ""
             tasks[title] = desc.join("")
@@ -57,6 +58,13 @@ module Lake
           File.delete(task_name)
           puts "#{"Task ignored".colorize(:red)}: #{task}"
         end
+      end
+    end
+
+    private def title_invalid(title)
+      if /-/ =~ title
+        Lake::Exception.new.taskname_incorrect
+        next
       end
     end
 

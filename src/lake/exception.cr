@@ -5,6 +5,10 @@ module Lake
     def initialize
     end
 
+    def taskname_incorrect
+      puts "\"-\" in a task name is not allowed."
+    end
+
     def missing_lakefile
       abort("#{error}: Couldn't find \"Lakefile\"")
     end
