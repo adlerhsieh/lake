@@ -32,6 +32,14 @@ brew install lake
 
 [Installtion details](https://github.com/adlerhsieh/homebrew-lake)
 
+#### Manual Installation
+
+If you decide to install it manually:
+
+1. [Install Crystal](http://crystal-lang.org/docs/installation/from_source_repository.html).
+2. Download lake [executable](https://github.com/adlerhsieh/lake/raw/master/lake).
+3. Move the executable to one of your `PATH` directory, `/usr/local/bin` for example.
+
 ## Usage
 
 Create a `Lakefile` in any project directory, and write:
