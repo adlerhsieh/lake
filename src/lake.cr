@@ -11,19 +11,19 @@ OptionParser.parse! do |parser|
     finder.create_tasks
     error.missing_task(name) unless finder.tasks.includes?(name)
     system(finder.find_task(name)) 
-    abort(nil)
+    exit 0
   }
   parser.on("-b", "--build", "Build all tasks, ignoring existing tasks.") {
     finder.create_tasks
-    abort(nil)
+    exit 0
   }
   parser.on("-r", "--rebuild", "Rebuild all tasks.") {
     finder.recreate_tasks
-    abort(nil)
+    exit 0
   }
   parser.on("-h", "--help", "Shows this message.") {
     puts parser 
-    abort(nil)
+    exit 0
   }
   # parser.on("-c", "--create", "Generates a scaffold") { 
   #   finder.set_dirs 
@@ -32,10 +32,11 @@ OptionParser.parse! do |parser|
   parser.on("-p", "--purge", "Remove .lake directory and Lakefile"){
     system("rm -rf .lake")
     system("rm Lakefile")
-    abort("Purged.")
+    exit("Purged.")
   }
   parser.banner = "Basic usage: lake -t [taskname]"
 end
 
 error.no_task if finder.tasks.size == 0
 puts "Available tasks: #{finder.tasks}"
+exit 0
