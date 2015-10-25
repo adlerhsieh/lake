@@ -18,7 +18,7 @@ module Lake
     end
 
     def no_task
-      abort("No task found. Usage:\n1. Create tasks in Lakefile.\n2. Run: lake -t [taskname]")
+      abort("No task found.")
     end
 
     private def error

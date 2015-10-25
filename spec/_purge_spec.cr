@@ -13,5 +13,6 @@ require "./spec_helper"
 #   end
 # end
 system("rm Lakefile")
+system("rm lake")
 system("rm -rf .lake")
 system("rm create.txt")

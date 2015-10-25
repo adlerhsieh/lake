@@ -26,7 +26,7 @@ module Lake
       }.compact.join(", ")
     end
 
-    def set_dirs
+    def prepare
       unless File.file?("#{@root}/Lakefile")
         system("touch Lakefile")          
         puts "#{"Created".colorize(:green)}: #{@root}/Lakefile"

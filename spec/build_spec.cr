@@ -6,7 +6,7 @@ describe "Lake" do
     File.file?("#{ENV["PWD"]}/lake").should be_true
   end
 
-  it "without option" do
+  it "without option and tasks" do
     system("./lake")
     File.file?("#{ENV["PWD"]}/Lakefile").should   be_true
     File.directory?("#{ENV["PWD"]}/.lake").should be_true
