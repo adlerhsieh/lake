@@ -47,13 +47,11 @@ brew install lake
 Create a `Lakefile` in any project directory:
 
 ```crystal
-Task.hello           # This is title
-  puts "hello world" # This is code
+Task.hello           # This is task name
+  puts "hello world" # This is task content
 ```
 
-In Lake DSL, all tasks should start with a `Task.` followed by a task name, which is `hello` in this case. Indentation in the block is not required.
-
-Save the file, and run:
+This creates a task named `hello`. Run:
 
 ```
 lake hello
@@ -122,12 +120,13 @@ If you have many tasks in a project, separate them in different files. In additi
 
 ##### 0.3.0
 - [ ] Argument support for tasks
+- [ ] Allow symbols except "-" in task name, all separated by a single blank space
 - [ ] DSL support that allows putting multiple tasks in a single task
 - [ ] Allow looking for other `Lakefile`s if not in current directory
 - [ ] Allow global Lakefile and `-g` option
-- [ ] apt-get installation
 
 ##### 1.0.0
+- [ ] apt-get installation
 - [ ] Unit Test
 - [ ] Acceptance Test
 - [ ] Official website or something better than README as introduction (gh-pages or .org)
