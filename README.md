@@ -18,6 +18,7 @@ Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for m
 
 | System         |  Available Methods  |
 | --------       | ------------------- |
+| All            | [Manual Installation](https://github.com/adlerhsieh/lake#manual-installation) |
 | OSX            | [Homebrew](https://github.com/adlerhsieh/lake#mac-os-x) |
 | Ubuntu / Debian | Work in progress    |
 | Windows        | Not Supported       |
@@ -34,24 +35,23 @@ brew install lake
 
 #### Manual Installation
 
-If you decide to install it manually:
-
 1. [Install Crystal](http://crystal-lang.org/docs/installation/from_source_repository.html).
-2. Download lake [executable](https://github.com/adlerhsieh/lake/raw/master/lake).
-3. Move the executable to one of your `PATH` directory, `/usr/local/bin` for example.
-
-Once done, run `lake -v` or `lake -h` and it should display something other than `Command not found`. Crystal is not required at this stage, but once you start running a task, you will see `Command not found: crystal` if Crystal is not successfully installed.
+2. Download the latest lake [executable](https://github.com/adlerhsieh/lake/raw/master/lake).
+3. Move the executable to one of your `PATH` directory, e.g. `/usr/local/bin`.
+4. Run `lake -v` and `crystal -v` to see if the installation is successful.
 
 ## Usage
 
-Create a `Lakefile` in any project directory, and write:
+#### Create your first task
+
+Create a `Lakefile` in any project directory:
 
 ```crystal
 Task.hello           # This is title
   puts "hello world" # This is code
 ```
 
-In Lake DSL, all tasks should start with a `Task.` followed by a task name, which is `hello` in this case. Indentation is not required.
+In Lake DSL, all tasks should start with a `Task.` followed by a task name, which is `hello` in this case. Indentation in the block is not required.
 
 Save the file, and run:
 
@@ -60,8 +60,6 @@ lake hello
 ```
 
 It compiles and build a task file for `hello` task. You should see `hello world` on screen and that's it. Write any script you want and run it this way.
-
-## Other Techniques
 
 #### Writing mulitple tasks in a single file
 

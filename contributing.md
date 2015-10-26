@@ -1,13 +1,11 @@
 # Contributing
 
-Thanks for thinking about contributing to this project!
-
 ## Preparation
 
 1. [Fork it](https://github.com/adlerhsieh/lake/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
 
-Before you start to make any change, run `shards` to install dependencies, they are used for ensure every test case is covered.
+Before you start to make any change, run `shards` to install dependencies, they are used for a proportion of tests.
 
 ## Running tests
 
@@ -23,4 +21,3 @@ As contributing to any project, after changes are made:
 2. Push to the branch (git push origin my-new-feature)
 3. Create a new Pull Request
 4. Make sure all tests are passed on Travis CI.
-

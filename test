@@ -1,8 +1,0 @@
-#!/bin/bash
-
-crystal build ./src/lake.cr
-./lake $1 $2 $3 $4 $5 $6
-rm lake
-rm -rf .crystal
-# rm -rf .lake/bin
-# rm -rf .lake/tasks
