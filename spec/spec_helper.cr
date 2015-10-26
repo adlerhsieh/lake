@@ -18,6 +18,7 @@ def task_content
     "puts \"hi\"",
 
     "Task.go\n"\
+    "require \"iceberg\"\n"\
     "puts \"We need to go now.\"\n"
   ]
 end
