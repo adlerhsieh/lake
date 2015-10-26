@@ -1,6 +1,6 @@
 # Lake [![Build Status](https://travis-ci.org/adlerhsieh/lake.svg?branch=master)](https://travis-ci.org/adlerhsieh/lake)
 
-##### Rake is productive, but we want it faster.
+#### Rake is productive, but we want it faster.
 
 Lake is a [rake](http://rake.rubyforge.org/)-inspired tool in Crystal-lang for managing you tasks. Tasks are automatically built & run through the command line interface. It take advantages of the performance of `Crystal` and the utility of `rake`, helping you run recursive tasks in amazing speed.
 
@@ -61,11 +61,9 @@ lake hello
 
 It compiles and build a task file for `hello` task. You should see `hello world` on screen and that's it. Write any script you want and run it this way.
 
-## Advanced Techniques
+## Other Techniques
 
 #### Writing mulitple tasks in a single file
-
-You can set multiple tasks in a single file.
 
 ```crystal
 Task.salute
@@ -76,6 +74,17 @@ Task.write
 ```
 
 Each `Task` forms a block that runs the code inside. It is not a Crystal block so it allows defining a class and method in the code as in normal Crystal context.
+
+#### Dependencies
+
+If you're using dependencies, require them in the task block like:
+
+```crystal
+Task.query
+  require "crystal-mysql"
+```
+
+Lake shares dependencies with your project, so run `lake` command in the project root directory where `libs` and `.shards` directory exist.
 
 #### Second time is faster
 
@@ -109,8 +118,8 @@ If you have many tasks in a project, separate them in different files. In additi
 - [x] Remove reduntant `-t` when executing command
 - [x] Setting up ci service
 - [x] Automatically install Crystal before installing Lake
-- [ ] Allow `shards` support in `.lake`
-- [ ] Allow dependency requirement
+- [x] Allow `shards` support in `.lake`
+- [x] Allow dependency requirement
 - [x] Manual installation
 
 ##### 0.3.0
@@ -131,8 +140,5 @@ If you have many tasks in a project, separate them in different files. In additi
 
 ## Contributing
 
-1. Fork it ( https://github.com/adlerhsieh/lake/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create a new Pull Request
+Read the [Contributing guide](contributing.md)
+
