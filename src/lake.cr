@@ -6,7 +6,11 @@ error  = Lake::Exception.new
 finder = Lake::Finder.new
 
 OptionParser.parse! do |parser|
-  parser.on("[taskname]", "Run a specified task.") {}
+  parser.on("[taskname]", "Run specified tasks.") {}
+  parser.on("-g", "--global", "Run specified tasks on global Lakefile.") {
+    $home = true
+    finder.change_root
+  }
   parser.on("-b", "--build", "Build all tasks, ignoring existing tasks.") {
     finder.prepare
     finder.create_tasks
@@ -21,22 +25,14 @@ OptionParser.parse! do |parser|
     puts parser 
     exit 0
   }
-  # parser.on("-p", "--purge", "Removes .lake directory and Lakefile."){
-  #   system("rm -rf .lake") if File.directory?("#{ENV["PWD"]}/.lake")
-  #   system("rm lake")      if File.file?("#{ENV["PWD"]}/lake")
-  #   system("rm Lakefile")  if File.file?("#{ENV["PWD"]}/Lakefile")
-  #   puts "Purged."
-  #   exit 0
-  # }
   parser.on("-v", "--version", "Display current version"){
     puts Lake::VERSION
     exit 0
   }
-  # parser.banner = "Basic usage: lake [taskname]"
 end
 
 if ARGV.size > 0
-  runner = Lake::Runner.new(ARGV)
+  runner = Lake::Runner.new(ARGV,$home)
   if runner.has_task?
     finder.prepare
     finder.create_tasks 

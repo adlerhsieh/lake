@@ -1,8 +1,8 @@
 module Lake
   class Finder
-    getter :root
     getter :lakefile
     property :bin
+    property :root
     def initialize
       @root     = ENV["PWD"]
       @lakefile = find_lakefile.to_s
@@ -28,7 +28,7 @@ module Lake
 
     def prepare
       unless File.file?("#{@root}/Lakefile")
-        system("touch Lakefile")          
+        system("touch #{@root}/Lakefile")          
         puts "#{"Created".colorize(:green)}: #{@root}/Lakefile"
       end
       unless Dir.exists?("#{@root}/.lake") 
@@ -66,6 +66,10 @@ module Lake
       remove("tasks")
       remove("bin")
       create_tasks
+    end
+
+    def change_root
+      @root = ENV["HOME"]
     end
 
   end
