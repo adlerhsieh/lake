@@ -8,6 +8,12 @@ describe "Lake" do
 
   it "without option and tasks" do
     system("./lake").should be_true
+    File.file?("#{ENV["PWD"]}/Lakefile").should   be_false
+    File.directory?("#{ENV["PWD"]}/.lake").should be_false
+  end
+
+  it "creates tasks folder" do
+    system("./lake -b").should be_true
     File.file?("#{ENV["PWD"]}/Lakefile").should   be_true
     File.directory?("#{ENV["PWD"]}/.lake").should be_true
   end

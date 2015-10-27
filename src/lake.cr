@@ -50,6 +50,5 @@ if ARGV.size > 0
   end
 end
 
-finder.prepare
 puts "No specified task."
 exit 0
