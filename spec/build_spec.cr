@@ -1,23 +1,6 @@
 require "./spec_helper"
 
 describe "Lake" do
-  it "builds lake executable" do
-    system("crystal build ./src/lake.cr")
-    File.file?("#{ENV["PWD"]}/lake").should be_true
-  end
-
-  it "without option and tasks" do
-    system("./lake").should be_true
-    File.file?("#{ENV["PWD"]}/Lakefile").should   be_false
-    File.directory?("#{ENV["PWD"]}/.lake").should be_false
-  end
-
-  it "creates tasks folder" do
-    system("./lake -b").should be_true
-    File.file?("#{ENV["PWD"]}/Lakefile").should   be_true
-    File.directory?("#{ENV["PWD"]}/.lake").should be_true
-  end
-
   it "# creates tasks with helper" do
     File.write("#{ENV["PWD"]}/.lake/#{file_name[0]}.cr", task_content[0])
     File.write("#{ENV["PWD"]}/.lake/#{file_name[1]}.cr", task_content[1])
@@ -42,14 +25,5 @@ describe "Lake" do
       File.file?("#{ENV["PWD"]}/.lake/bin/hi").should          be_true
       File.file?("#{ENV["PWD"]}/.lake/bin/hi-").should         be_false
     end
-  end
-end
-
-describe "options" do
-  it "--help" do
-    system("./lake -h").should be_true
-  end
-  it "--version" do
-    system("./lake -v").should be_true
   end
 end
