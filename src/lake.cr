@@ -6,6 +6,7 @@ error  = Lake::Exception.new
 finder = Lake::Finder.new
 
 OptionParser.parse! do |parser|
+  parser.banner = "Usage:"
   parser.on("[taskname]", "Run specified tasks.") {}
   parser.on("-g", "--global", "Run specified tasks on global Lakefile.") {
     $home = true
@@ -46,5 +47,5 @@ if ARGV.size > 0
   end
 end
 
-puts "No specified task."
+puts "No task found."
 exit 0
